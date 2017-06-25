@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>index</title>
     <meta charset="utf-8"/>
@@ -68,7 +70,7 @@
 
 
 
-                    <li><a class="default" href="/logout">
+                    <li sec:authorize="isAuthenticated()"><a class="default" href="/logout">
                         <span class="glyphicon glyphicon-log-out"/> Log Out</a></li>
 
             </ul>

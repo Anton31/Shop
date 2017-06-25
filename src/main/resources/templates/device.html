@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
     <title>Device</title>
@@ -36,7 +38,7 @@
                 </li>
 
 
-                <li><a class="default" href="/logout">
+                <li sec:authorize="isAuthenticated()"><a class="default" href="/logout">
                     <span class="glyphicon glyphicon-log-out"/> Log Out</a></li>
 
             </ul>
@@ -60,9 +62,9 @@
                             alt="Image"/></a>
                 </div>
                 <div class="panel-footer" align="center">
-                    <h5 th:text="${device.price + 'grn'}"/><a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
+                    <h5 th:text="${device.price + 'grn'}"/><span sec:authorize="isAuthenticated()"><a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
                                                               class="btn btn-success" role="button">To
-                    cart</a></div>
+                    cart</a></span></div>
             </div>
         </div>
     </div>

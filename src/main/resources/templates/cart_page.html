@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
     <title>Cart page</title>
@@ -34,8 +36,8 @@
                     <span class="glyphicon glyphicon-log-in"/><span th:text="${user}"/></a>
                 </li>
 
-                <li><a class="default" href="/logout">
-                    <span class="glyphicon glyphicon-log-out"/> Log Out</a></li>
+              <li sec:authorize="isAuthenticated()"><a class="default" href="/logout">
+                  <span class="glyphicon glyphicon-log-out"/> Log Out</a></li>
             </ul>
         </div>
     </div>
