@@ -1,6 +1,8 @@
 package ua.kiev.prog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,10 +44,12 @@ public class UserController {
     }
 
     @RequestMapping("/register_page")
-    public String register_page() {
+    public String register_page(Model model) {
+
+        model.addAttribute("user", " Log in");
+
         return "register";
     }
-
     List<User> users = new ArrayList<>();
     List<Role> roles = new ArrayList<>();
 
@@ -84,4 +88,5 @@ public class UserController {
         return "login_page";
 
     }
+
 }

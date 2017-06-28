@@ -25,6 +25,11 @@
                 <li><a href="/" class="active">Home</a></li>
 
                 <li><a href="/admin" class="default">Admin</a></li>
+                <li sec:authorize="isAuthenticated()"><a class="default" href="/cart_page">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart
+                    <span class="badge" th:text="${items}"/></a>
+                </li>
+                <li sec:authorize="isAuthenticated()"><a href="/result_page" class="default">Orders</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">

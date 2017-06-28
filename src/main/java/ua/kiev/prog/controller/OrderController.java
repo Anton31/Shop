@@ -33,13 +33,13 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/cart_add_page", method = RequestMethod.GET)
+    @RequestMapping(value = "/cart_page", method = RequestMethod.GET)
     public String cart(
             Model model) {
         model.addAttribute("carts", orderService.listCarts(findUser()));
         model.addAttribute("total", orderService.totalPrice(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
-        return "cart_add_page";
+        return "cart_page";
     }
 
     @RequestMapping(value = "/to-cart/{deviceId}/{n}", method = RequestMethod.GET)

@@ -17,27 +17,35 @@
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
+
             <a class="navbar-brand" href="/">Computer Shop</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/" class="active">Home</a></li>
+
                 <li><a href="/admin" class="default">Admin</a></li>
-                <li><a class="active" href="/cart_add_page">
+                <li sec:authorize="isAuthenticated()"><a class="default" href="/cart_page">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Cart
                     <span class="badge" th:text="${items}"/></a>
                 </li>
+                <li sec:authorize="isAuthenticated()"><a href="/result_page" class="default">Orders</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="default" href="/register_page">
                     <span class="glyphicon glyphicon-user"></span> Sign Up</a>
                 </li>
+
+
                 <li><a class="default" href="/user">
                     <span class="glyphicon glyphicon-log-in"/><span th:text="${user}"/></a>
                 </li>
 
-              <li sec:authorize="isAuthenticated()"><a class="default" href="/logout">
-                  <span class="glyphicon glyphicon-log-out"/> Log Out</a></li>
+
+                <li sec:authorize="isAuthenticated()"><a class="default" href="/logout">
+                    <span class="glyphicon glyphicon-log-out"/> Log Out</a></li>
+
             </ul>
         </div>
     </div>

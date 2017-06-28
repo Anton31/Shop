@@ -39,7 +39,6 @@ public class MainController {
         } else {
             model.addAttribute("user", " " + findUser().getUsername());
         }
-
         model.addAttribute("carts", orderService.listCarts(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
         return "index";
