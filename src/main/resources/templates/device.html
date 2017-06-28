@@ -62,14 +62,14 @@
                     </a></div>
                 <div class="panel-body" align="center">
                     <a th:href="@{/onedevice/{deviceId}(deviceId=${device.id})}"><img
-                            th:src="@{/photo/{deviceId}/0(deviceId=${device.id})}"
+                            th:src="@{/photo/{deviceId}(deviceId=${device.id})}"
                             class="img-responsive"
                             alt="Image"/></a>
                 </div>
                 <div class="panel-footer" align="center">
-                    <h5 th:text="${device.price + 'grn'}"/><span sec:authorize="isAuthenticated()"><a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
+                    <h5 th:text="${device.price + ' grn'}"/><span sec:authorize="isAuthenticated()"><a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
                                                               class="btn btn-success" role="button">To
-                    cart</a></span></div>
+                    cart</a></span><span sec:authorize="!isAuthenticated()"><a href="/login_page" class="default">login to buy online</a></span></div>
             </div>
         </div>
     </div>

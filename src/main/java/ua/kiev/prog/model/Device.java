@@ -21,7 +21,7 @@ public class Device {
     private String name;
     private String manufacturer;
     private int price;
-    private Integer ram;
+    private int ram;
     private String processor;
 
     /**
@@ -33,7 +33,7 @@ public class Device {
     /**
      * Class constructor with parameters.
      */
-    public Device(Type type, String name, String manufacturer, int price, Integer ram, String processor) {
+    public Device(Type type, String name, String manufacturer, int price, int ram, String processor) {
         this.type = type;
         this.name = name;
         this.manufacturer = manufacturer;
@@ -98,11 +98,11 @@ public class Device {
         this.price = price;
     }
 
-    public Integer getRam() {
+    public int getRam() {
         return ram;
     }
 
-    public void setRam(Integer ram) {
+    public void setRam(int ram) {
         this.ram = ram;
     }
 

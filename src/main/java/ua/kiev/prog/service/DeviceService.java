@@ -133,6 +133,10 @@ public class DeviceService {
         return photoRepository.findByDeviceId(device.getId());
     }
 
+    @Transactional
+    public Photo getMainPhoto(Device device){
+        return photoRepository.findFirstByDevice(device);
+    }
     @Transactional(readOnly = true)
     public List<Device> priceSorter(String type, String dir) {
         List<Device>list=null;

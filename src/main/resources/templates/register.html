@@ -21,7 +21,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/" class="default">Home</a></li>
 
                 <li><a href="/admin" class="default">Admin</a></li>
                 <li sec:authorize="isAuthenticated()"><a class="default" href="/cart_page">
@@ -32,7 +32,7 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="default" href="/register_page">
+                <li><a class="active" href="/register_page">
                     <span class="glyphicon glyphicon-user"></span> Sign Up</a>
                 </li>
 

@@ -66,8 +66,8 @@ public class AdminController {
                             @RequestParam(defaultValue = "null") String name,
                             @RequestParam(defaultValue = "null") String manufacturer,
                             @RequestParam(defaultValue = "-1") int price,
-                            @RequestParam(value = "ram", required = false) Integer ram,
-                            @RequestParam(value = "processor", required = false) String processor,
+                            @RequestParam(defaultValue = "-1", required = false) int ram,
+                            @RequestParam(defaultValue = "null", required = false) String processor,
                             Model model) throws IOException {
         Type type = deviceService.findTypeById(typeId);
         if (name.equals(null) || manufacturer.equals(null) || price == -1) {

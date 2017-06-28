@@ -12,4 +12,6 @@ public interface PhotoRepository extends CrudRepository<Photo, Integer> {
 
     List<Photo> findByDeviceId(int id);
 
+    Photo findFirstByDevice(Device device);
+
 }

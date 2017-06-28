@@ -36,6 +36,11 @@ public class OrderController {
     @RequestMapping(value = "/cart_page", method = RequestMethod.GET)
     public String cart(
             Model model) {
+        if (findUser() == null) {
+            model.addAttribute("user", " Log in");
+        } else {
+            model.addAttribute("user", " " + findUser().getUsername());
+        }
         model.addAttribute("carts", orderService.listCarts(findUser()));
         model.addAttribute("total", orderService.totalPrice(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
@@ -81,6 +86,11 @@ public class OrderController {
             Order order = new Order(findUser(), name, address, phone, c);
             orderService.addOrder(order);
         }
+        if (findUser() == null) {
+            model.addAttribute("user", " Log in");
+        } else {
+            model.addAttribute("user", " " + findUser().getUsername());
+        }
         model.addAttribute("items", orderService.totalItems(findUser()));
         model.addAttribute("orders", orderService.listOrders(findUser()));
         model.addAttribute("total", orderService.totalPrice(findUser()));
@@ -89,6 +99,11 @@ public class OrderController {
 
     @RequestMapping("/result_page")
     public String result(Model model) {
+        if (findUser() == null) {
+            model.addAttribute("user", " Log in");
+        } else {
+            model.addAttribute("user", " " + findUser().getUsername());
+        }
         model.addAttribute("items", orderService.totalItems(findUser()));
         model.addAttribute("orders", orderService.listOrders(findUser()));
         model.addAttribute("total", orderService.totalPrice(findUser()));
@@ -97,6 +112,11 @@ public class OrderController {
 
     @RequestMapping(value = "/order_page", method = RequestMethod.GET)
     public String order(Model model) {
+        if (findUser() == null) {
+            model.addAttribute("user", " Log in");
+        } else {
+            model.addAttribute("user", " " + findUser().getUsername());
+        }
         model.addAttribute("items", orderService.totalItems(findUser()));
         model.addAttribute("carts", orderService.listCarts(findUser()));
 
@@ -106,6 +126,11 @@ public class OrderController {
     @RequestMapping(value = "/cart/delete/{cartId}")
     public String deleteCart(@PathVariable int cartId, Model model) {
         deviceService.deleteCart(cartId);
+        if (findUser() == null) {
+            model.addAttribute("user", " Log in");
+        } else {
+            model.addAttribute("user", " " + findUser().getUsername());
+        }
         model.addAttribute("items", orderService.totalItems(findUser()));
         model.addAttribute("carts", orderService.listCarts(findUser()));
         model.addAttribute("total", orderService.totalPrice(findUser()));

@@ -53,6 +53,11 @@ ul.navbar-nav a.active:hover {
     min-height: 150px;
 
 }
+
+.panel-footer a.default {
+
+    color: blue;
+}
 .table-bordered a:hover {
     background-color: blue;
     color: white;

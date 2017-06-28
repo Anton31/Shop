@@ -96,11 +96,11 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<div align="center"><h3 th:text="${'Price: '+device.price}"/></div>
-<div align="center"><h3 th:text="${'Manufacturer: '+device.manufacturer}"/></div>
+<div align="center"><h3 th:text="${'Price: ' + device.price}"/></div>
+<div align="center"><h3 th:text="${'Manufacturer: ' + device.manufacturer}"/></div>
 
-        <div align="center"><h3 th:text="${'RAM: '+device.ram}"/></div>
-        <div align="center"><h3 th:text="${'processor: '+device.processor}"/></div>
+<div align="center"><h3 th:if="${device.ram != -1}" th:text="${'RAM: ' + device.ram}"/></div>
+<div align="center"><h3 th:if="${device.processor != 'null'}">Processor: <span th:text="${device.processor}"/></h3></div>
 
 </body>
 </html>

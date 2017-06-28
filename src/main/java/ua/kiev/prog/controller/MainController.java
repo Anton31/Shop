@@ -174,6 +174,16 @@ public class MainController {
         return "smartphone";
     }
 
+    @RequestMapping(value = "/photo/{deviceId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<byte[]> onPhoto(@PathVariable int deviceId) {
+        Device d = deviceService.findDeviceById(deviceId);
+
+        Photo photo = deviceService.getMainPhoto(d);
+
+
+        return ResponseEntity.ok(photo.getBody());
+    }
 
     @RequestMapping(value = "/photo/{deviceId}/{n}", method = RequestMethod.GET)
     @ResponseBody
@@ -195,8 +205,8 @@ public class MainController {
         List<Device> devices = deviceService.listDevicesByType(type, "asc");
         Random random = new Random();
         Device device = devices.get(random.nextInt(devices.size()));
-        List<Photo> photos = deviceService.getPhotos(device);
-        Photo photo = photos.get(0);
+
+        Photo photo = deviceService.getMainPhoto(device);
         return ResponseEntity.ok(photo.getBody());
     }
 

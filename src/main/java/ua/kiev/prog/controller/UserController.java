@@ -31,8 +31,9 @@ public class UserController {
     public String login(Model model, @RequestParam(required = false) String error) {
         if (error != null) {
             model.addAttribute("message", "Wrong login and password!");
-            model.addAttribute("state", "alert alert-danger");
+
         }
+        model.addAttribute("user", " Log in");
         return "login_page";
     }
 
