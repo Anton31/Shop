@@ -17,6 +17,9 @@
             max-height: 300px;
             width: auto;
         }
+        .carousel-inner {
+            min-height: 320px;
+        }
     </style>
 </head>
 <body>
@@ -70,19 +73,19 @@
 
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="img-responsive" th:src="@{/photo/{deviceId}/0(deviceId=${device.id})}"/>
+            <img class="img-responsive" alt="no photo" th:src="@{/photo/{deviceId}/0(deviceId=${device.id})}"/>
         </div>
 
         <div class="item">
-            <img class="img-responsive" th:src="@{/photo/{deviceId}/1(deviceId=${device.id})}"/>
+            <img class="img-responsive" alt="no photo" th:src="@{/photo/{deviceId}/1(deviceId=${device.id})}"/>
         </div>
 
         <div class="item">
-            <img class="img-responsive" th:src="@{/photo/{deviceId}/2(deviceId=${device.id})}"/>
+            <img class="img-responsive" alt="no photo" th:src="@{/photo/{deviceId}/2(deviceId=${device.id})}"/>
         </div>
 
         <div class="item">
-            <img class="img-responsive" th:src="@{/photo/{deviceId}/3(deviceId=${device.id})}"/>
+            <img class="img-responsive" alt="no photo" th:src="@{/photo/{deviceId}/3(deviceId=${device.id})}"/>
         </div>
     </div>
 
@@ -96,11 +99,11 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<div align="center"><h3 th:text="${'Price: ' + device.price}"/></div>
+<div align="center"><h3 th:text="${'Price: ' + device.price  + 'grn'}"/></div>
 <div align="center"><h3 th:text="${'Manufacturer: ' + device.manufacturer}"/></div>
 
 <div align="center"><h3 th:if="${device.ram != -1}" th:text="${'RAM: ' + device.ram}"/></div>
-<div align="center"><h3 th:if="${device.processor != 'null'}">Processor: <span th:text="${device.processor}"/></h3></div>
+<div align="center"><h3 th:if="${device.processor != 'null'}" th:text="${'Processor:' + device.processor}"/></div>
 
 </body>
 </html>

@@ -48,7 +48,7 @@
 
 
                 <td><input type="checkbox" id="td" name="todelete[]" th:value="${device.id}"/></td>
-                <td><img class="img-responsive" alt="No Photo" th:src="@{/photo/{id}/0(id=${device.id})}"/></td>
+                <td><img class="img-responsive" alt="No Photo" th:src="@{/photo/{id}/(id=${device.id})}"/></td>
                 <td th:text="${device.name}"/>
                 <td th:text="${device.manufacturer}"/>
                 <td th:text="${device.price}"/>
