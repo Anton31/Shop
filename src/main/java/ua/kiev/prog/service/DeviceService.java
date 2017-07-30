@@ -81,11 +81,11 @@ public class DeviceService {
      */
     @Transactional(readOnly = true)
     public List<Device> listDevicesByType(Type type, String dir) {
-        List<Device>list=null;
-        if(dir.equals("asc")){
-        list= deviceRepository.findByTypeOrderByNameAsc(type);}
-        else if(dir.equals("desc")){
-            list= deviceRepository.findByTypeOrderByNameDesc(type);
+        List<Device> list = null;
+        if (dir.equals("asc")) {
+            list = deviceRepository.findByTypeOrderByNameAsc(type);
+        } else if (dir.equals("desc")) {
+            list = deviceRepository.findByTypeOrderByNameDesc(type);
         }
         return list;
     }
@@ -97,7 +97,6 @@ public class DeviceService {
     public Type findTypeById(int id) {
         return typeRepository.findOne(id);
     }
-
 
 
     /**
@@ -121,9 +120,13 @@ public class DeviceService {
      */
     @Transactional(readOnly = true)
     public List<Device> searchDevices(String type, String pattern) {
-        return  deviceRepository.findByNameStartingWith(pattern);
+        return deviceRepository.findByNameStartingWith(pattern);
     }
 
+    @Transactional
+    public List<Device> devicesInCart(User user) {
+        return deviceRepository.findByCartsIn(cartRepository.findByUser(user));
+    }
 
     /**
      * Returns all photos of certain device from database.
@@ -134,16 +137,17 @@ public class DeviceService {
     }
 
     @Transactional
-    public Photo getMainPhoto(Device device){
+    public Photo getMainPhoto(Device device) {
         return photoRepository.findFirstByDevice(device);
     }
+
     @Transactional(readOnly = true)
     public List<Device> priceSorter(String type, String dir) {
-        List<Device>list=null;
-        if(dir.equals("asc")){
+        List<Device> list = null;
+        if (dir.equals("asc")) {
             list = deviceRepository.findByTypeNameOrderByPriceAsc(type);
         }
-        if(dir.equals("desc")){
+        if (dir.equals("desc")) {
             list = deviceRepository.findByTypeNameOrderByPriceDesc(type);
         }
         return list;

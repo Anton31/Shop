@@ -115,10 +115,19 @@ public class Device {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Device)) return false;
+
+        Device device = (Device) o;
+
+        return getId() == device.getId();
+
+    }
+
+    @Override
     public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + getManufacturer().hashCode();
-        return result;
+        return getId();
     }
 }
 

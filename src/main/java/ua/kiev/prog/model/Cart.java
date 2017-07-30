@@ -84,4 +84,20 @@ public class Cart {
     public void setItems(int items) {
         this.items = items;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cart)) return false;
+
+        Cart cart = (Cart) o;
+
+        return getId() == cart.getId();
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
+    }
 }

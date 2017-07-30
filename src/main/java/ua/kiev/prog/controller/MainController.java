@@ -39,7 +39,9 @@ public class MainController {
         } else {
             model.addAttribute("user", " " + findUser().getUsername());
         }
-        model.addAttribute("carts", orderService.listCarts(findUser()));
+
+
+        model.addAttribute("incart", deviceService.devicesInCart(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
         return "index";
     }
@@ -53,7 +55,8 @@ public class MainController {
         } else {
             model.addAttribute("user", " " + findUser().getUsername());
         }
-        model.addAttribute("c", orderService.listCarts(findUser()));
+        model.addAttribute("incart", deviceService.devicesInCart(findUser()));
+
         model.addAttribute("items", orderService.totalItems(findUser()));
         return "one_device";
     }
@@ -86,7 +89,7 @@ public class MainController {
             model.addAttribute("user", " " + findUser().getUsername());
         }
         model.addAttribute("sortbyname", dir);
-        model.addAttribute("carts", orderService.listCarts(findUser()));
+        model.addAttribute("incart", deviceService.devicesInCart(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
         return "device";
     }

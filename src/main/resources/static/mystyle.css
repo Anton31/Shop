@@ -54,8 +54,8 @@ ul.navbar-nav a.active:hover {
 
 }
 
-.panel-footer a.default {
-
+.panel-footer a {
+    font-weight: bold;
     color: blue;
 }
 .table-bordered a:hover {

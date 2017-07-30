@@ -67,9 +67,25 @@
                             alt="Image"/></a>
                 </div>
                 <div class="panel-footer" align="center">
-                    <h4 th:text="${'price: '+device.price+' grn'}"/><span sec:authorize="isAuthenticated()"><a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
-                                                              class="btn btn-success" role="button">To
-                    cart</a></span><span sec:authorize="!isAuthenticated()"><a href="/login_page" class="default">login to buy online</a></span></div>
+                    <h4 th:text="${'price: '+device.price+' grn'}"/>
+                    <span sec:authorize="isAuthenticated()">
+                <a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
+                   th:if="${#lists.isEmpty(incart)}"
+                   class="btn btn-success" role="button">To cart</a>
+
+                        <a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
+                           th:if="${not #lists.isEmpty(incart) and not #lists.contains(incart, device)}"
+                           class="btn btn-success" role="button">To cart</a>
+
+
+                        <a th:href="@{/cart_page}"
+                           th:if="${not #lists.isEmpty(incart) and #lists.contains(incart, device)}">In
+                            cart</a>
+                        </span>
+
+                    <span sec:authorize="!isAuthenticated()"><a href="/login_page" class="default">login to buy
+                        online</a></span>
+                </div>
             </div>
         </div>
     </div>
