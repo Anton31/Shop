@@ -77,35 +77,37 @@ public class MainController {
         return names.toString();
     }
 
-    @RequestMapping(value = "/type/{typeId}/{dir}", method = RequestMethod.GET)
-    public String nameFilter(@PathVariable int typeId, @PathVariable String dir,
+    @RequestMapping(value = "/type/{typeId}", method = RequestMethod.GET)
+    public String nameFilter(@PathVariable int typeId,
                              Model model) {
         Type type = deviceService.findTypeById(typeId);
         model.addAttribute("type", type);
-        model.addAttribute("devices", deviceService.listDevicesByType(type, dir));
+        model.addAttribute("devices", deviceService.listDevicesByType(type));
         if (findUser() == null) {
             model.addAttribute("user", " Log in");
         } else {
             model.addAttribute("user", " " + findUser().getUsername());
         }
-        model.addAttribute("sortbyname", dir);
+        model.addAttribute("namesort", "true");
+
         model.addAttribute("incart", deviceService.devicesInCart(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
         return "device";
     }
 
-    @RequestMapping(value = "/price_sorter/{type}/{dir}")
-    public String priceSorter(@PathVariable String type,
+    @RequestMapping(value = "/price-sorter/{typeId}/{dir}")
+    public String priceSorter(@PathVariable int typeId,
                               @PathVariable String dir,
                               Model model
     ) {
+        Type type = deviceService.findTypeById(typeId);
         model.addAttribute("devices", deviceService.priceSorter(type, dir));
-
-        model.addAttribute("sortbyprice", dir);
-
+        model.addAttribute("type", type);
+        model.addAttribute("pricesort", dir);
+        model.addAttribute("namesort", "false");
         model.addAttribute("carts", orderService.listCarts(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
-        return type.toLowerCase();
+        return "device";
     }
 
     List<Integer> rams = new ArrayList<>();
@@ -205,7 +207,7 @@ public class MainController {
     public ResponseEntity<byte[]> rnPhoto(@PathVariable int typeId) {
 
         Type type = deviceService.findTypeById(typeId);
-        List<Device> devices = deviceService.listDevicesByType(type, "asc");
+        List<Device> devices = deviceService.listDevicesByType(type);
         Random random = new Random();
         Device device = devices.get(random.nextInt(devices.size()));
 

@@ -94,12 +94,12 @@
         <div class="col-sm-4" th:each="type : ${types}">
             <div class="panel panel-primary">
                 <div class="panel-heading" align="center">
-                    <a th:href="@{/type/{typeId}/asc(typeId=${type.id})}">
+                    <a th:href="@{/type/{typeId}(typeId=${type.id})}">
                         <h4 th:text="${type.name}"/>
                     </a></div>
                 <div class="panel-body" align="center">
-                    <a th:href="@{/type/{typeId}/asc(typeId=${type.id})}"><img
-                            th:src="@{/randomphoto/{name}(name=${type.id})}"
+                    <a th:href="@{/type/{typeId}(typeId=${type.id})}"><img
+                            th:src="@{/randomphoto/{typeId}(typeId=${type.id})}"
                             class="img-responsive"
                             alt="Image"/></a>
                 </div>

@@ -46,11 +46,9 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/device/delete")
-    public String search(@RequestParam(value = "todelete[]") String[] todelete, Model model) {
-        for (String d : todelete) {
-            if (d != null) {
-                deviceService.deleteDevice(Integer.parseInt(d));
-            }
+    public String search(@RequestParam(value = "todelete[]") int[] todelete, Model model) {
+        for(int i : todelete){
+            deviceService.deleteDevice(i);
         }
         model.addAttribute("types", deviceService.listTypes());
         model.addAttribute("devices", deviceService.listDevices());
@@ -79,7 +77,7 @@ public class AdminController {
         Device device = new Device(type, name, manufacturer, price,
                 ram, processor);
 
-        List<Device> list = deviceService.listDevicesByType(type, "asc");
+        List<Device> list = deviceService.listDevicesByType(type);
         int count = 0;
         for (Device dev : list) {
             if (dev.getName().equalsIgnoreCase(name)) {

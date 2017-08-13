@@ -10,7 +10,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
 
+        function biggerPhoto(index) {
+
+            $('#' + index).animate(
+                    {height: '140px', width: 'auto'}, "slow");
+
+
+        }
+        ;
+
+        function smallerPhoto(index) {
+
+            $('#' + index).animate(
+                    {height: '120px', width: 'auto'}, "slow");
+
+
+        }
+        ;
+    </script>
     <link rel="stylesheet" type="text/css" href="/mystyle.css" media="all"/>
 </head>
 <body>
@@ -50,8 +69,27 @@
         </div>
     </div>
 </nav>
-<div align="center"><h2 th:text="${type.name}"><b>Name: </b></h2></div>
+<div align="center">
+    <h2 th:text="${type.name}"><h6>Name: </h6></h2>
+</div>
 <br/>
+<div align="center">
+    <p><b>Sort by: <span th:if="${namesort == 'true'}">Name | </span>
+        <a th:href="@{/type/{typeId}(typeId=${type.id})}" th:if="${namesort == 'false'}">Name | </a>
+
+
+        <span th:if="${namesort == 'false' and pricesort == 'asc'}"> From cheap to expensive | </span>
+        <a th:href="@{/price-sorter/{typeId}/asc(typeId=${type.id})}"
+           th:if="${namesort == 'true' or(namesort == 'false' and pricesort == 'desc')}">From cheap to expensive | </a>
+        <span th:if="${namesort == 'false' and pricesort == 'desc'}"> From expensive to cheap</span>
+        <a th:href="@{/price-sorter/{typeId}/desc(typeId=${type.id})}"
+           th:if="${namesort == 'true' or(namesort == 'false' and pricesort == 'asc')}">From expensive to cheap</a>
+
+
+    </b></p>
+
+
+</div>
 <div class="container">
     <div class="row">
         <div class="col-sm-4" th:each="device : ${devices}">
@@ -63,8 +101,8 @@
                 <div class="panel-body" align="center">
                     <a th:href="@{/onedevice/{deviceId}(deviceId=${device.id})}"><img
                             th:src="@{/photo/{deviceId}(deviceId=${device.id})}"
-                            class="img-responsive"
-                            alt="Image"/></a>
+                            class="img-responsive" th:id="${deviceStat.index}" onmouseover="biggerPhoto(id)"
+                            onmouseout="smallerPhoto(id)" alt="Image"/></a>
                 </div>
                 <div class="panel-footer" align="center">
                     <h4 th:text="${'price: '+device.price+' grn'}"/>

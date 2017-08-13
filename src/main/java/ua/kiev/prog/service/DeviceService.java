@@ -80,14 +80,9 @@ public class DeviceService {
      * Returns all devices of certain type from database.
      */
     @Transactional(readOnly = true)
-    public List<Device> listDevicesByType(Type type, String dir) {
-        List<Device> list = null;
-        if (dir.equals("asc")) {
-            list = deviceRepository.findByTypeOrderByNameAsc(type);
-        } else if (dir.equals("desc")) {
-            list = deviceRepository.findByTypeOrderByNameDesc(type);
-        }
-        return list;
+    public List<Device> listDevicesByType(Type type) {
+        return  deviceRepository.findByTypeOrderByNameAsc(type);
+
     }
 
     /**
@@ -142,13 +137,13 @@ public class DeviceService {
     }
 
     @Transactional(readOnly = true)
-    public List<Device> priceSorter(String type, String dir) {
+    public List<Device> priceSorter(Type type, String dir) {
         List<Device> list = null;
         if (dir.equals("asc")) {
-            list = deviceRepository.findByTypeNameOrderByPriceAsc(type);
+            list = deviceRepository.findByTypeOrderByPriceAsc(type);
         }
         if (dir.equals("desc")) {
-            list = deviceRepository.findByTypeNameOrderByPriceDesc(type);
+            list = deviceRepository.findByTypeOrderByPriceDesc(type);
         }
         return list;
     }

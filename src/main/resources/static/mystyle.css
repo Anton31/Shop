@@ -34,7 +34,7 @@ ul.navbar-nav a.active:hover {
 }
 
 .img-responsive {
-    max-height: 120px;
+    height: 120px;
     width: auto;
 }
 
@@ -50,7 +50,7 @@ ul.navbar-nav a.active:hover {
     color: white;
 }
 .panel-body{
-    min-height: 150px;
+    min-height: 170px;
 
 }
 
