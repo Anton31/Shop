@@ -46,11 +46,13 @@ ul.navbar-nav a.active:hover {
     min-height: 36px;
     min-width: 40px;
 }
+
+
 .panel-primary a {
     color: white;
 }
 .panel-body{
-    min-height: 170px;
+    min-height: 180px;
 
 }
 

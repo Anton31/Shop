@@ -96,7 +96,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading" align="center">
                     <a th:href="@{/onedevice/{deviceId}(deviceId=${device.id})}">
-                        <h4 th:text="${device.name}"/>
+                        <h5 th:text="${device.name}"/>
                     </a></div>
                 <div class="panel-body" align="center">
                     <a th:href="@{/onedevice/{deviceId}(deviceId=${device.id})}"><img
@@ -105,7 +105,7 @@
                             onmouseout="smallerPhoto(id)" alt="Image"/></a>
                 </div>
                 <div class="panel-footer" align="center">
-                    <h4 th:text="${'price: '+device.price+' grn'}"/>
+                    <h5 th:text="${'price: '+device.price+' grn'}"/>
                     <span sec:authorize="isAuthenticated()">
                 <a th:href="@{/to-cart/{deviceId}/1(deviceId=${device.id})}"
                    th:if="${#lists.isEmpty(incart)}"
