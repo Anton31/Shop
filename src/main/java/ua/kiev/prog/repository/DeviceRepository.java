@@ -7,12 +7,15 @@ import ua.kiev.prog.model.Device;
 import ua.kiev.prog.model.Type;
 
 import java.util.List;
+import java.util.Set;
+
 @Repository
 public interface DeviceRepository extends CrudRepository<Device, Integer> {
 
         Device findByName(String name);
-        List<Device> findByCartsIn(List<Cart>carts);
 
+        List<Device> findByCartsIn(List<Cart>carts);
+        List<Device> findByTypeAndManufacturerIn(Type type, Set<String> brands);
         List<Device> findByTypeOrderByNameAsc(Type type);
 
         List<Device> findByTypeOrderByPriceAsc(Type type);

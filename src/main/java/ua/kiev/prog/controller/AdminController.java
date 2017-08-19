@@ -13,7 +13,8 @@ import ua.kiev.prog.model.Type;
 import ua.kiev.prog.service.DeviceService;
 
 import java.io.IOException;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Controller for site administration
@@ -47,9 +48,10 @@ public class AdminController {
 
     @RequestMapping(value = "/device/delete")
     public String search(@RequestParam(value = "todelete[]") int[] todelete, Model model) {
-        for(int i : todelete){
-            deviceService.deleteDevice(i);
-        }
+    for(int id : todelete){
+        deviceService.deleteDevice(id);
+    }
+
         model.addAttribute("types", deviceService.listTypes());
         model.addAttribute("devices", deviceService.listDevices());
         return "index_admin";

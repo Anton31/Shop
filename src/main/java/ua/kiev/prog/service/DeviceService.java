@@ -6,7 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.kiev.prog.model.*;
 import ua.kiev.prog.repository.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class DeviceService {
@@ -57,6 +61,7 @@ public class DeviceService {
      */
     @Transactional
     public void deleteDevice(int id) {
+
         deviceRepository.delete(id);
     }
 
@@ -159,8 +164,14 @@ public class DeviceService {
     /**
      * Returns all devices with certain manufacturer from database.
      */
-   /* @Transactional(readOnly = true)
-    public List<Device> manufacturerFilter(String type, List<String> manufacturers) {
-        return deviceRepository.manufacturerFilter(type, manufacturers);
-    } */
+    @Transactional(readOnly = true)
+    public List<Device> manufacturerFilter(Type type, Set<String> brands) {
+        List<Device>deviceList = null;
+        if(brands.size()==0){
+            deviceList = deviceRepository.findByTypeOrderByNameAsc(type);}
+        if(brands.size()>0){
+        deviceList = deviceRepository.findByTypeAndManufacturerIn(type, brands);}
+
+        return deviceList;
+    }
 }

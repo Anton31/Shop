@@ -42,10 +42,7 @@ ul.navbar-nav a.active:hover {
     background-color: white;
     color: deepskyblue;
 }
-.btn {
-    min-height: 36px;
-    min-width: 40px;
-}
+
 
 
 .panel-primary a {

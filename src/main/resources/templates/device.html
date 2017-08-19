@@ -73,30 +73,46 @@
     <h2 th:text="${type.name}"><h6>Name: </h6></h2>
 </div>
 <br/>
-<div align="center">
-    <p><b>Sort by: <span th:if="${namesort == 'true'}">Name | </span>
-        <a th:href="@{/type/{typeId}(typeId=${type.id})}" th:if="${namesort == 'false'}">Name | </a>
 
-
-        <span th:if="${namesort == 'false' and pricesort == 'asc'}"> From cheap to expensive | </span>
-        <a th:href="@{/price-sorter/{typeId}/asc(typeId=${type.id})}"
-           th:if="${namesort == 'true' or(namesort == 'false' and pricesort == 'desc')}">From cheap to expensive | </a>
-        <span th:if="${namesort == 'false' and pricesort == 'desc'}"> From expensive to cheap</span>
-        <a th:href="@{/price-sorter/{typeId}/desc(typeId=${type.id})}"
-           th:if="${namesort == 'true' or(namesort == 'false' and pricesort == 'asc')}">From expensive to cheap</a>
-
-
-    </b></p>
-
-
-</div>
 <div class="container">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <b>Brand: </b>
+        <span th:each="brand : ${brands}">
+            <span th:if="${#sets.contains(selectedBrands, brand)}">
+                <a th:href="@{/manufacturer_filter/{typeId}/{brand}(typeId=${type.id}, brand=${brand})}"
+                   th:text="${brand}"
+                   class="btn btn-success btn-sm" role="button"/> </span>
+            <span th:if="${not #sets.contains(selectedBrands, brand)}">
+                <b><a th:href="@{/manufacturer_filter/{typeId}/{brand}(typeId=${type.id}, brand=${brand})}"
+                      th:text="${brand}"
+                      class="btn btn-default btn-sm" role="button"/></b> </span>
+        </span></div>
+        <div class="col-sm-8">
+            <p><b>Sort by: </b><span th:if="${namesort == 'true'}">Name | </span>
+                <a th:href="@{/type/{typeId}(typeId=${type.id})}" th:if="${namesort == 'false'}">Name | </a>
+
+
+                <span th:if="${namesort == 'false' and pricesort == 'asc'}"> Price ascending | </span>
+                <a th:href="@{/price-sorter/{typeId}/asc(typeId=${type.id})}"
+                   th:if="${namesort == 'true' or(namesort == 'false' and pricesort == 'desc')}"> Price ascending | </a>
+                <span th:if="${namesort == 'false' and pricesort == 'desc'}"> Price descending</span>
+                <a th:href="@{/price-sorter/{typeId}/desc(typeId=${type.id})}"
+                   th:if="${namesort == 'true' or(namesort == 'false' and pricesort == 'asc')}">Price descending </a>
+
+
+            </p>
+        </div>
+    </div>
+    <br/>
     <div class="row">
         <div class="col-sm-4" th:each="device : ${devices}">
+
             <div class="panel panel-primary">
                 <div class="panel-heading" align="center">
                     <a th:href="@{/onedevice/{deviceId}(deviceId=${device.id})}">
-                        <h5 th:text="${device.name}"/>
+                        <h4 th:text="${device.name}"/>
                     </a></div>
                 <div class="panel-body" align="center">
                     <a th:href="@{/onedevice/{deviceId}(deviceId=${device.id})}"><img
@@ -125,8 +141,10 @@
                         online</a></span>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+
 </body>
 </html>

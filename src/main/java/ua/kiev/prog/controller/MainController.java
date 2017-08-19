@@ -77,6 +77,8 @@ public class MainController {
         return names.toString();
     }
 
+    Set<String> selectedBrands = new TreeSet<>();
+
     @RequestMapping(value = "/type/{typeId}", method = RequestMethod.GET)
     public String nameFilter(@PathVariable int typeId,
                              Model model) {
@@ -90,6 +92,13 @@ public class MainController {
         }
         model.addAttribute("namesort", "true");
 
+        List<Device> devices = deviceService.listDevicesByType(type);
+        Set<String> brands = new TreeSet<>();
+        for (Device device : devices) {
+            brands.add(device.getManufacturer());
+        }
+        model.addAttribute("selectedBrands", selectedBrands);
+        model.addAttribute("brands", brands);
         model.addAttribute("incart", deviceService.devicesInCart(findUser()));
         model.addAttribute("items", orderService.totalItems(findUser()));
         return "device";
@@ -161,22 +170,36 @@ public class MainController {
         }
     }
 
-    List<String> manufacturers = new ArrayList<>();
 
-    @RequestMapping("/manufacturer_filter/{type}/{manufacturer}")
-    public String manufacturerFilter(Model model, @PathVariable String type,
-                                     @PathVariable String manufacturer) {
-        if (!manufacturers.contains(manufacturer)) {
-            manufacturers.add(manufacturer);
+
+
+    @RequestMapping("/manufacturer_filter/{typeId}/{brand}")
+    public String manufacturerFilter(Model model, @PathVariable String typeId,
+                                     @PathVariable String brand) {
+        int id= Integer.parseInt(typeId);
+        Type type = deviceService.findTypeById(id);
+
+        List<Device> devices = deviceService.listDevicesByType(type);
+        Set<String> brands = new TreeSet<>();
+        for (Device device : devices) {
+            brands.add(device.getManufacturer());
+        }
+
+        if (!selectedBrands.contains(brand)) {
+            selectedBrands.add(brand);
 
         } else {
-            manufacturers.remove(manufacturer);
+            selectedBrands.remove(brand);
         }
-        model.addAttribute("manufacturers", manufacturers);
+        model.addAttribute("type", type);
+
+        model.addAttribute("brands", brands);
+        model.addAttribute("namesort", "true");
+        model.addAttribute("selectedBrands", selectedBrands);
         model.addAttribute("sortbyname", "ascending");
         model.addAttribute("items", orderService.totalItems(findUser()));
-        //  model.addAttribute("devices", deviceService.manufacturerFilter(type, manufacturers));
-        return "smartphone";
+        model.addAttribute("devices", deviceService.manufacturerFilter(type, selectedBrands));
+        return "device";
     }
 
     @RequestMapping(value = "/photo/{deviceId}", method = RequestMethod.GET)
