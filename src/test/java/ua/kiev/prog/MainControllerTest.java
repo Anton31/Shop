@@ -1,3 +1,5 @@
+package ua.kiev.prog;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Main.class)
+@SpringBootTest
 @AutoConfigureMockMvc
 public class MainControllerTest {
 
