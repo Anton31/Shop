@@ -23,6 +23,8 @@
                 <configuration>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>ua.kiev.prog.Main</mainClass>
                         </manifest>
                     </archive>
