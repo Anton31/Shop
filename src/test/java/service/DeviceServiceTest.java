@@ -1,4 +1,4 @@
-package ua.kiev.prog;
+package service;
 
 import junit.framework.Assert;
 import org.junit.Before;
