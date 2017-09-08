@@ -55,8 +55,8 @@ CREATE TABLE `devices` (
 
 INSERT INTO `devices` (`id`, `type_id`, `name`, `manufacturer`, `price`, `ram`, `processor`) VALUES
 (7, 4, 'Everest Game 9080 (9080_0213)', 'Everest', 35000, 8, 'i7'),
-(10, 1, 'iPhone7', 'Apple', 30000, NULL, ''),
-(11, 6, 'Samsung 21.5 S22F350F (LS22F350FHIXCI)', 'Samsung', 3200, NULL, '');
+(10, 1, 'iPhone7', 'Apple', 30000, -1, ''),
+(11, 6, 'Samsung 21.5 S22F350F (LS22F350FHIXCI)', 'Samsung', 3200, -1, '');
 
 -- --------------------------------------------------------
 
