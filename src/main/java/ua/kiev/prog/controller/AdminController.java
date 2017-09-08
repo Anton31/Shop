@@ -55,7 +55,6 @@ public class AdminController {
         model.addAttribute("devices", deviceService.listDevices());
         return "index_admin";
     }
-
     @RequestMapping(value = "/adddevice", method = RequestMethod.POST)
     public String deviceAdd(@RequestParam(value = "type")int typeId,
                             @RequestParam(required = false) MultipartFile main_photo,
