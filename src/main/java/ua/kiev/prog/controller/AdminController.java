@@ -51,7 +51,6 @@ public class AdminController {
     for(int id : todelete){
         deviceService.deleteDevice(id);
     }
-
         model.addAttribute("types", deviceService.listTypes());
         model.addAttribute("devices", deviceService.listDevices());
         return "index_admin";
